@@ -21,7 +21,8 @@ export default class Login extends React.Component {
 		const { name } = this.state;
 		return (
 			<>
-				<h1>Login</h1>
+				<h1>Banco de dados de personagens Rick and Morty</h1>
+				<p>Informe seu nome</p>
 				<input
 					type="text"
 					name="name"

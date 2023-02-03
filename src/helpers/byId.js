@@ -1,4 +1,4 @@
-const finById = async (id) => {
+const findById = async (id) => {
 	const response = await fetch(
 		`https://rickandmortyapi.com/api/character/${id}`,
 	);
@@ -6,4 +6,4 @@ const finById = async (id) => {
 	return result;
 };
 
-export default finById;
+export default findById;

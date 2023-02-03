@@ -8,9 +8,15 @@ export default class Home extends React.Component {
 		valores: [],
 	};
 
-	callApi = async () => {
-		const { name, valores } = this.state;
+	componentDidMount() {
+		const get = JSON.parse(localStorage.getItem('username'));
+		this.setState({
+			name: get,
+		});
+	}
 
+	callApi = async () => {
+		const { name } = this.state;
 		const { results } = await chamadaApi(name);
 
 		this.setState({
@@ -28,26 +34,32 @@ export default class Home extends React.Component {
 	};
 
 	render() {
-		const { name, valores } = this.state;
+		const { name, valores, search } = this.state;
 		console.log(name);
 		const { history } = this.props;
+
 		return (
 			<>
 				<h1>Home</h1>
 				<h1>Bem vindo {name}</h1>
+				
 				<input
+				placeholder='Nome do personagem'
 					type="text"
-					name="name"
-					value={name}
+					name="search"
+					value={search}
 					onChange={this.handleChange}
 				/>
 				<button onClick={this.handleClick}>Enviar</button>
 				<span>
-					{valores.length &&
+					{valores &&
 						valores.map((val) => (
 							<div key={val.id}>
 								<span>{val.name}</span>
-								<button onClick={() => history.push(`profile/${val.id}`)}>
+								<button
+									type="button"
+									onClick={() => history.push(`profile/${val.id}`)}
+								>
 									perfil
 								</button>
 							</div>
