@@ -34,7 +34,7 @@ export default class Profile extends React.Component {
 				<button onClick={() => history.push('/home')}>Voltar</button>
 				<h1>Profile</h1>
 				{loading && <Loading />}
-				
+
 				{!loading &&
 					characters.map((char) => (
 						<div key={char.id}>
@@ -42,6 +42,7 @@ export default class Profile extends React.Component {
 							<h1>Name: {char.name}</h1>
 							<p>Location: {char.location.name}</p>
 							<p>Specie: {char.species}</p>
+							<p>Status: {char.status}</p>
 						</div>
 					))}
 			</>

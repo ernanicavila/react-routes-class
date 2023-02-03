@@ -16,8 +16,8 @@ export default class Home extends React.Component {
 	}
 
 	callApi = async () => {
-		const { name } = this.state;
-		const { results } = await chamadaApi(name);
+		const { search } = this.state;
+		const { results } = await chamadaApi(search);
 
 		this.setState({
 			valores: results,
@@ -50,7 +50,7 @@ export default class Home extends React.Component {
 					value={search}
 					onChange={this.handleChange}
 				/>
-				<button onClick={this.handleClick}>Enviar</button>
+				<button type='button' onClick={this.handleClick}>Enviar</button>
 				<span>
 					{valores &&
 						valores.map((val) => (
