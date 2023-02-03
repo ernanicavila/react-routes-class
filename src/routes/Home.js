@@ -5,6 +5,7 @@ export default class Home extends React.Component {
 	state = {
 		name: '',
 		search: '',
+		filter: '',
 		valores: [],
 	};
 
@@ -34,7 +35,7 @@ export default class Home extends React.Component {
 	};
 
 	render() {
-		const { name, valores, search } = this.state;
+		const { name, valores, search, filter } = this.state;
 		console.log(name);
 		const { history } = this.props;
 
@@ -42,28 +43,43 @@ export default class Home extends React.Component {
 			<>
 				<h1>Home</h1>
 				<h1>Bem vindo {name}</h1>
-				
+
 				<input
-				placeholder='Nome do personagem'
+					placeholder="Nome do personagem"
 					type="text"
 					name="search"
 					value={search}
 					onChange={this.handleChange}
 				/>
-				<button type='button' onClick={this.handleClick}>Enviar</button>
+				<button type="button" onClick={this.handleClick}>
+					Enviar
+				</button>
+
+				<div>
+					{/* input do filtro */}
+					<input
+						placeholder="Filtro por nome"
+						type="text"
+						name="filter"
+						onChange={this.handleChange}
+						value={filter}
+					/>
+				</div>
 				<span>
 					{valores &&
-						valores.map((val) => (
-							<div key={val.id}>
-								<span>{val.name}</span>
-								<button
-									type="button"
-									onClick={() => history.push(`profile/${val.id}`)}
-								>
-									perfil
-								</button>
-							</div>
-						))}
+						valores
+							.filter((el) => el.name.includes(filter))	// filtro para puxar por nomes						
+							.map((val) => (
+								<div key={val.id}>
+									<span>{val.name}</span>
+									<button
+										type="button"
+										onClick={() => history.push(`profile/${val.id}`)}
+									>
+										perfil
+									</button>
+								</div>
+							))}
 				</span>
 			</>
 		);
